@@ -7,7 +7,8 @@ function face(n)
 end
 
 print('please enter a number')
-num = 3 --read("*number")
+num = read("*number")
+print(num)
 print(face(num))
 
 print("hello, lua")

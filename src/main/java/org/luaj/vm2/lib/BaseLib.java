@@ -99,6 +99,9 @@ public class BaseLib extends TwoArgFunction implements ResourceFinder {
     env.set("type", new type());
     env.set("xpcall", new xpcall());
 
+    // to extend other methods
+    new com.mislead.luaj.extend.BaseLib(this, globals).extend(env);
+
     next next;
     env.set("next", next = new next());
     env.set("pairs", new pairs(next));
