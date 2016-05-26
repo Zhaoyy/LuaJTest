@@ -2,10 +2,9 @@ package com.mislead.luaj.extend;
 
 import java.util.Scanner;
 import org.luaj.vm2.Globals;
-import org.luaj.vm2.LuaInteger;
 import org.luaj.vm2.LuaString;
 import org.luaj.vm2.LuaValue;
-import org.luaj.vm2.lib.OneArgFunction;
+import org.luaj.vm2.lib.ZeroArgFunction;
 
 /**
  * BaseLib by Mislead on 2016/5/26.
@@ -23,22 +22,17 @@ public class BaseLib {
     env.set("read", new read(baseLib));
   }
 
-  // 简单实现一个io.read的方法
-  final class read extends OneArgFunction {
+  // implements a read method to read the input line from console.
+  final class read extends ZeroArgFunction {
     final org.luaj.vm2.lib.BaseLib baseLib;
 
     public read(org.luaj.vm2.lib.BaseLib baseLib) {
       this.baseLib = baseLib;
     }
 
-    @Override public LuaValue call(LuaValue arg) {
+    @Override public LuaValue call() {
       Scanner scanner = new Scanner(System.in);
       String result = scanner.nextLine();
-      if (arg instanceof LuaString) {
-        if (arg.tojstring().replaceAll("\\*", "").toLowerCase().equals("number")) {
-          return LuaInteger.valueOf(Long.valueOf(result));
-        }
-      }
       return LuaString.valueOf(result);
     }
   }

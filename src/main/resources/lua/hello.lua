@@ -1,5 +1,5 @@
 function face(n)
-    if n == 0 then
+    if (n == nil) or (n == 0) then
         return 1
     else
         return n * face(n - 1)
@@ -7,7 +7,7 @@ function face(n)
 end
 
 print('please enter a number')
-num = read("*number")
+num = tonumber(read())
 print(num)
 print(face(num))
 
